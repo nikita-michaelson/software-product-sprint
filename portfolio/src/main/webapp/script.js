@@ -17,12 +17,18 @@
  */
 function addRandomQuoteOrFact() {
   const quotesOrFacts =
-      ['Loves spicy food', 'Can speak some Korean', '"My Cabbages"', '"Bonjour le monde!"'];
+      ['Loves spicy food', 'Can speak some Korean', '"My Cabbages!"', '"My own mother thought that I was a monster.She was right of course but it still hurt!"'];
 
   // Pick a random greeting.
-  const greeting = quotesOrFacts[Math.floor(Math.random() * greetings.length)];
+  const greeting = quotesOrFacts[Math.floor(Math.random() * quotesOrFacts.length)];
 
   // Add it to the page.
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
+}
+
+function hello(){
+   fetch('/data').then(response=>response.text()).then((hi)=>{
+    document.getElementById('response').innerText = hi;
+  });
 }

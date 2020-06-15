@@ -201,3 +201,11 @@ footer a:link, footer a:visited {
 	width: 148px; 
 	height: 110px;
 	}
+.button{
+	position: relative;
+	border: 0;
+	padding: 15px 25px;
+	display: inline-block;
+	text-align: center;
+	color: #B3AE94;
+}
