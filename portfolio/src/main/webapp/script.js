@@ -28,9 +28,13 @@ function addRandomQuoteOrFact() {
 }
 
 function hello(){
-   fetch('/data').then(response=>response.json()).then((hi)=>{
-    document.getElementById('response').innerText = hi;
-  });
+   fetch('/data').then(response=>response.json()).then((comment)=>{
+    const commentList = document.getElementById('response');
+    comment.forEach((com) => {commentList.appendChild(createListElement(com));
+    });
+    console.log(com);
+    
+});
 }
 
 

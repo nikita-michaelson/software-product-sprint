@@ -64,7 +64,28 @@
 
       <button onclick="addRandomQuoteOrFact()"> facts + quotes </button>
       <div id = "greeting-container"></div>
+      <div class ="commentForm">
+        <h2 class="contactSubtitle">Leave a comment!</h2>
+        <form action="/data" method="POST">
+          <label for ="userName" style="display:block: margin-top: .5em";> Name: </label>
+            <div id = "nameHolder">
+              <input type="text" id="userName" name="userName" maxlength="35" placeholder="Your name...">
+            </div>
+          <label for="comment" style="display:block; margin-top: .5em;">Comment:</label>
+            <div id="textareaHolder">
+            <textarea id="comment" name="comment" rows="4" cols="50" maxlength="600" placeholder="Add a comment..."></textarea>
+            </div>
+          <input type ="submit"> </input>
+          <div id = "test">
+              <ul>
+                  <li> list item </li>
+                  <li> list item </li>
+              </ul>
+          </div>
+          
 
+        </form>
+      </div>
       <button onclick="hello()"> hi </button>
       <div id = "response"></div>
 

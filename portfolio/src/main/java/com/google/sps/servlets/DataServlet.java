@@ -44,4 +44,29 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println(json);
   
 }
+ @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String name = getParameter(request, "userName", "");
+    String comment = getParameter(request, "comment", "");
+
+    // Respond with the result.
+    response.setContentType("text/html;");
+    
+    response.getWriter().println(name);
+    response.getWriter().println(comment);
+    response.sendRedirect("index.html");
+  }
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
 }
