@@ -28,15 +28,6 @@ public class DataServlet extends HttpServlet {
     private ArrayList<String> comments;
 
   @Override
-  public void init() {
-    comments = new ArrayList<>();
-    comments.add("You're so smart");
-    comments.add("Keep up the good work");
-    comments.add(" Nice job! ");
-  }
-    
-    
-  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
     Gson gson = new Gson();
@@ -47,13 +38,13 @@ public class DataServlet extends HttpServlet {
  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String name = getParameter(request, "userName", "");
+    //String name = getParameter(request, "userName", "");
     String comment = getParameter(request, "comment", "");
-
+    System.out.println(comment);
     // Respond with the result.
     response.setContentType("text/html;");
-    
-    response.getWriter().println(name);
+    comments.add(comment);
+    //response.getWriter().println(name);
     response.getWriter().println(comment);
     response.sendRedirect("index.html");
   }
