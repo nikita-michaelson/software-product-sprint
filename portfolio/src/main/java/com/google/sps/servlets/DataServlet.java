@@ -15,6 +15,9 @@
 package com.google.sps.servlets;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -26,16 +29,11 @@ import java.util.ArrayList;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
     private ArrayList<String> comments;
+    public void init(){
+        comments = new ArrayList<>();
+        
+    }
 
-  @Override
-  public void init() {
-    comments = new ArrayList<>();
-    comments.add("You're so smart");
-    comments.add("Keep up the good work");
-    comments.add(" Nice job! ");
-  }
-    
-    
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
@@ -44,4 +42,38 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println(json);
   
 }
+ @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String name = getParameter(request, "userName", "");
+    String comment = getParameter(request, "comment", "");
+   // System.out.println(comment);
+   for(String x : comments){
+       System.out.println(x);
+   }
+    // Respond with the result.
+    response.setContentType("text/html;");
+    comments.add(comment+"            --"+name);
+      Entity comEntity = new Entity("Task");
+    comEntity.setProperty("name", name);
+    comEntity.setProperty("comment", comment);
+
+    //response.getWriter().println(name);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(comEntity);
+    response.sendRedirect("index.html");
+    response.getWriter().println(comments);
+  }
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
 }
