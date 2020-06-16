@@ -26,6 +26,10 @@ import java.util.ArrayList;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
     private ArrayList<String> comments;
+    public void init(){
+        comments = new ArrayList<>();
+        
+    }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -38,15 +42,19 @@ public class DataServlet extends HttpServlet {
  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    //String name = getParameter(request, "userName", "");
+    String name = getParameter(request, "userName", "");
     String comment = getParameter(request, "comment", "");
-    System.out.println(comment);
+   // System.out.println(comment);
+   for(String x : comments){
+       System.out.println(x);
+   }
     // Respond with the result.
     response.setContentType("text/html;");
-    comments.add(comment);
+    comments.add(comment+"            --"+name);
     //response.getWriter().println(name);
-    response.getWriter().println(comment);
+    
     response.sendRedirect("index.html");
+    response.getWriter().println(comments);
   }
 
   /**

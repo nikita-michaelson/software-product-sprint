@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="hello()">
     <div id="content">
       <h1>Nikita Michaelson</h1>
       <p>I am Nikita Michaelson; a Computer Science major at the University of Georgia.
@@ -75,19 +75,11 @@
             <div id="textareaHolder">
             <textarea id="comment" name="comment" rows="4" cols="50" maxlength="600" placeholder="Add a comment..."></textarea>
             </div>
-          <input type ="submit"> </input>
-          <div id = "test">
-              <ul>
-                  <li> list item </li>
-                  <li> list item </li>
-              </ul>
-          </div>
-          
-
+          <button onclick="hello()"> post </button>
+           <div id = "response"></div>
         </form>
       </div>
-      <button onclick="hello()"> hi </button>
-      <div id = "response"></div>
+      
 
       <h2>MORE INFO</h2> 
       <p><a href="https://www.linkedin.com/in/nikitamichaelson">Visit my LinkedIn Profile</a></p>
