@@ -28,7 +28,15 @@ function addRandomQuoteOrFact() {
 }
 
 function hello(){
-   fetch('/data').then(response=>response.text()).then((hi)=>{
+   fetch('/data').then(response=>response.json()).then((hi)=>{
     document.getElementById('response').innerText = hi;
   });
+}
+
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
