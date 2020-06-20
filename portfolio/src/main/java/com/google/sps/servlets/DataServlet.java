@@ -13,6 +13,9 @@
 // limitations under the License.
 
 package com.google.sps.servlets;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -25,6 +28,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
@@ -37,8 +41,22 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
+     
+     // Get the request parameters.
+    String originalText = request.getParameter("text");
+    String languageCode = request.getParameter("languageCode");
+
+    // Do the translation.
+    Translate translate = TranslateOptions.getDefaultInstance().getService();
+    Translation translation =
+        translate.translate(originalText, Translate.TranslateOption.targetLanguage(languageCode));
+    String translatedText = translation.getTranslatedText();
+
+    // convert to json
     Gson gson = new Gson();
     String json = gson.toJson(comments);
+    String jsonTrans = gson.toJson(translatedText);
+
     response.getWriter().println(json);
   
 }
@@ -58,7 +76,7 @@ public class DataServlet extends HttpServlet {
     comEntity.setProperty("name", name);
     comEntity.setProperty("comment", comment);
 
-    //response.getWriter().println(name);
+    //using the data store to make comments persist
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(comEntity);
     response.sendRedirect("index.html");

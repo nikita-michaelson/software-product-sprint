@@ -7,6 +7,9 @@
     <script src="script.js"></script>
   </head>
   <body onload="hello()">
+
+      
+      
     <div id="content">
       <h1>Nikita Michaelson</h1>
       <p>I am Nikita Michaelson; a Computer Science major at the University of Georgia.
@@ -77,6 +80,13 @@
             </div>
           <button onclick="hello()"> post </button>
            <div id = "response"></div>
+           <div id = "change"></div>
+          <select id="language">
+            <option value="es">English</option>
+            <option value="ko">Korean</option>
+            <option value="ig">Igbo</option>
+          </select>
+          <button onclick="requestTranslation(language)">Translate</button>
         </form>
       </div>
       

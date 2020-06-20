@@ -36,7 +36,40 @@ function hello(){
     
 });
 }
+function requestTranslation(language){
+    var english = "en";
+    var korean = "ko";
+    var igbo = "ig";
 
+    var lang = language.value;
+    const text = document.getElementById('text').value;
+    const languageCode = document.getElementById('language').value;
+    const resultContainer = document.getElementById('change');
+    resultContainer.innerText = 'Loading...';
+
+    console.log(lang);
+    if( lang == english){
+        fetch('/data?lang=en').then(response=>response.text()).then((translate)=>{
+           const translatedComment = document.getElementById('greeting-container');
+           console.log(translatedComment);
+           console.log(translate);
+        })
+    }else if( lang == korean){
+        fetch('/data?lang=ko').then(response=>response.text()).then((translate)=>{
+           const translatedComment = document.getElementById('greeting-container');
+           console.log(translatedComment);
+           console.log(translate);
+        })
+    }else(lang == igbo){
+
+        fetch('/data?lang=ig').then(response=>response.text()).then((translate)=>{
+           const translatedComment = document.getElementById('greeting-container');
+           console.log(translatedComment);
+           console.log(translate);
+        })
+    }
+        
+    }
 
 /** Creates an <li> element containing text. */
 function createListElement(text) {
