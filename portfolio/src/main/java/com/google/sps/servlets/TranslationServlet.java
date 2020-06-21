@@ -1,17 +1,3 @@
-// Copyright 2019 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package com.google.sps.servlets;
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
@@ -30,46 +16,52 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
-    private ArrayList<String> comments;
+@WebServlet("/translate")
+public class TranslationServlet extends HttpServlet {
+   private ArrayList<String> translatedComments;
     public void init(){
-        comments = new ArrayList<>();
+        translatedComments = new ArrayList<>();
         
     }
-
-  @Override
+    @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
   
 
     // convert to json
     Gson gson = new Gson();
-    String json = gson.toJson(comments);
+    String json = gson.toJson(translatedComments);
     response.getWriter().println(json);
   
 }
  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
-    String name = getParameter(request, "userName", "");
-    String comment = getParameter(request, "comment", "");
-   // System.out.println(comment);
-   for(String x : comments){
-       System.out.println(x);
-   }
-    // Respond with the result.
-    response.setContentType("text/html;");
-    comments.add(comment+"            --"+name);
-      Entity comEntity = new Entity("Task");
-    comEntity.setProperty("name", name);
-    comEntity.setProperty("comment", comment);
+    // Get the request parameters.
+    String originalText = request.getParameter("text");
+    String languageCode = request.getParameter("languageCode");
+    System.out.println(originalText);
+    System.out.println(languageCode);
 
-    //using the data store to make comments persist
+    // Do the translation.
+    Translate translate = TranslateOptions.getDefaultInstance().getService();
+    Translation translation =
+        translate.translate(originalText, Translate.TranslateOption.targetLanguage(languageCode));
+    String translatedText = translation.getTranslatedText();
+        System.out.println(translatedText);
+    
+    // Output the translation.
+    response.setContentType("text/html; charset=UTF-8");
+    response.setCharacterEncoding("UTF-8");
+
+    translatedComments.add(translatedText+"     "+originalText);
+      Entity transEntity = new Entity("Translate");
+    transEntity.setProperty("Translated Comment", translatedText);
+    transEntity.setProperty("Original Comment", originalText);
+    //response.sendRedirect("index.html");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(comEntity);
+    datastore.put(transEntity);
     response.sendRedirect("index.html");
-    response.getWriter().println(comments);
+    response.getWriter().println(translatedText);
   }
 
   /**

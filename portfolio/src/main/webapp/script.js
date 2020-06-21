@@ -36,40 +36,29 @@ function hello(){
     
 });
 }
-function requestTranslation(language){
-    var english = "en";
-    var korean = "ko";
-    var igbo = "ig";
 
-    var lang = language.value;
-    const text = document.getElementById('text').value;
-    const languageCode = document.getElementById('language').value;
-    const resultContainer = document.getElementById('change');
-    resultContainer.innerText = 'Loading...';
+    function requestTranslation() {
+        const text = document.getElementById('comment').value;
+        const languageCode = document.getElementById('language').value;
 
-    console.log(lang);
-    if( lang == english){
-        fetch('/data?lang=en').then(response=>response.text()).then((translate)=>{
-           const translatedComment = document.getElementById('greeting-container');
-           console.log(translatedComment);
-           console.log(translate);
-        })
-    }else if( lang == korean){
-        fetch('/data?lang=ko').then(response=>response.text()).then((translate)=>{
-           const translatedComment = document.getElementById('greeting-container');
-           console.log(translatedComment);
-           console.log(translate);
-        })
-    }else(lang == igbo){
+        const resultContainer = document.getElementById('result');
+        resultContainer.innerText = 'Loading...';
+        console.log(resultContainer);
+        const params = new URLSearchParams();
+        params.append('text', text);
+        params.append('languageCode', languageCode);
 
-        fetch('/data?lang=ig').then(response=>response.text()).then((translate)=>{
-           const translatedComment = document.getElementById('greeting-container');
-           console.log(translatedComment);
-           console.log(translate);
-        })
-    }
+        fetch('/translate', {
+          method: 'POST',
+          body: params
+        }).then(response => response.text())
+        .then((translatedMessage) => {
+          resultContainer.innerText = translatedMessage;
+        });
+      }
+
         
-    }
+    
 
 /** Creates an <li> element containing text. */
 function createListElement(text) {

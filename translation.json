@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "nmichaelson-sps-summer20",
+  "private_key_id": "7f561a4d73d62089e994c7725237c2da385c92db",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDmfXVqS4C5bPoF\nuS92UDEzu4YK5/hJ3mKS8TgU1s5jxzj58Jlt6KccDtgqVes2jD+WTPEPrrx2ZB4l\n2Q3gwhJQ+iGA6cb1e5rman2SBiOZl2QyhzoRV7/FWKhtdbmdmLPRyaEOuI0eRWGk\nl2kmysxsX+Wt7UX0QN4hIg/ExtmgMrQGukRg++MCyUU1sy1/yXGah37LauiW12aD\n2u6JZB2T3i84HF6SEOkg84IYYMH9uJKR2szYHBxpHQwUGTCJLnB6/1tHMzPorrYW\nP1Sum7G3G530SPzNWVP3fVLCM7sp+4qZoNDJA5LaSPM9nC61MlX/hU/ndhZcOU4H\n2VGOKzvlAgMBAAECggEAZvZMaTtpOWvxFHVxOk0AbberXVvakkUBi9qtzsFWWUQ5\ns41DPNHdNK986QyQkkF8dkvQs8y+67Q1s3qOtIR9YicaqFfGRQr+W0fe6EhNxuLW\nI6w8yFqGlEXSl3Mrg7cfPOvxQn42q/sab0gj9OxK/W6pT1TbFw2TLQHmQWUC+ohS\ntjp/byOCttzR5LcIJaNSLA8sVc768rdIvjcA3lGRqJBIGeipFv0gIrGEXwu/8hCV\nAinjx2xlyPT1yoLyMpYuijxMhN9++vFoeQ6VoZe0gP8fvc02n6J/LYsJ2tpMTlrV\n2Qd2GHijYHEWuwGwVdHG42jSJYZSEzFHP1QRsLau0QKBgQD7KLIB0UIpjxCkEeRB\njnJDLjlhCO2K1/QaYvzq2cI6XQtlitfl/sOjlhRxA+iYX9GfIIyyacjIdYnQTeAj\nhcwX9TDcvIGJclG1WkXNV9fRtk1OhLTv9096ELllYSFVjm4Kmy2Yn+OJECKY2HMN\nWd5OlHr007WXESnzuCcu6zVJ4wKBgQDq7sagtNiF+rz+ueNyJTd+USafjW9VZ/v/\nBmQ7HSAfE7BmLomYX3sZitteBoMngJYgS28j1BLIscIvJu3X1YaArFOzCF4tC/5S\n8dkmqOFpoiAL0PtwlZmnZMUNQxhHzRacHfQMi1pY1EoJj7l87pmO1yiHF+AM51hL\nXuHM+E1tlwKBgQDhh0R4z1BLAzWdLpe5qlC+NKa/lIXBdHO0sgiMVqfLQru2HbwK\nwf8pSN3oMetN0FTqQA83MjhikPEEhLltDHsdVEXhIMBtDKOEZqBhaKzamonGpPHY\nvUm3wYbJGzQUoIX9riR+daya6ks21r5RUc6G31udtvHLylTSjh1ZS0oZowKBgQDp\n9v/C/jeAPnRHrfJwM9YvKzwuu5j70kHo+YGKSXg62s3bBU+serJKfrn2yr+E8I8R\n/G3jnYlTa4v6j2dgglqf/H6ilpvLet0913MuCBPssjP98JLnzWSnizie+4nLv9hb\ng40PjRxdyJUvLn5IiApPccD/wOw1jZOmBAkVqtbZYwKBgFxKW8MK+N9Rmt5bEsOj\n+QiuQ7WHlRoVz50b4B+ZaDnlcEeXVkDTdXwLV0/IEijP+8hIuKXEHOPvP20lVN+6\nXDrlTnc3Le0d9J1mELLkvs1VAZu74fxWNvokH4KmL4jokwrGdSP3+qcLsn/hgBuf\nWY88eiUJrRurtbaGZI0NjiuS\n-----END PRIVATE KEY-----\n",
+  "client_email": "nikitacloud@nmichaelson-sps-summer20.iam.gserviceaccount.com",
+  "client_id": "117656341906668713269",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nikitacloud%40nmichaelson-sps-summer20.iam.gserviceaccount.com"
+}

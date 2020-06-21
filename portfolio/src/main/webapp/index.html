@@ -79,14 +79,21 @@
             <textarea id="comment" name="comment" rows="4" cols="50" maxlength="600" placeholder="Add a comment..."></textarea>
             </div>
           <button onclick="hello()"> post </button>
-           <div id = "response"></div>
-           <div id = "change"></div>
+          <div id = "response"></div>
+           <br></br>
+           <h3>Use the translate button instead of post to see your comment in a different language!</h3>
+          <form action="/translate" method="POST">
+          
           <select id="language">
             <option value="es">English</option>
             <option value="ko">Korean</option>
             <option value="ig">Igbo</option>
           </select>
-          <button onclick="requestTranslation(language)">Translate</button>
+          
+          <button onclick="requestTranslation()">Translate</button>
+          <br></br>
+          <div id = "result"><div>
+          </form>
         </form>
       </div>
       
