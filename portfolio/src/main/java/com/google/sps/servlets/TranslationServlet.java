@@ -23,7 +23,7 @@ public class TranslationServlet extends HttpServlet {
         translatedComments = new ArrayList<>();
         
     }
-    @Override
+  /*  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
   
@@ -32,8 +32,10 @@ public class TranslationServlet extends HttpServlet {
     Gson gson = new Gson();
     String json = gson.toJson(translatedComments);
     response.getWriter().println(json);
+    System.out.println(json);
   
 }
+*/
  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the request parameters.
@@ -45,22 +47,13 @@ public class TranslationServlet extends HttpServlet {
     // Do the translation.
     Translate translate = TranslateOptions.getDefaultInstance().getService();
     Translation translation =
-        translate.translate(originalText, Translate.TranslateOption.targetLanguage(languageCode));
+    translate.translate(originalText, Translate.TranslateOption.targetLanguage(languageCode));
     String translatedText = translation.getTranslatedText();
-        System.out.println(translatedText);
+    System.out.println(translatedText);
     
     // Output the translation.
     response.setContentType("text/html; charset=UTF-8");
-    response.setCharacterEncoding("UTF-8");
-
-    translatedComments.add(translatedText+"     "+originalText);
-      Entity transEntity = new Entity("Translate");
-    transEntity.setProperty("Translated Comment", translatedText);
-    transEntity.setProperty("Original Comment", originalText);
-    //response.sendRedirect("index.html");
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(transEntity);
-    response.sendRedirect("index.html");
+    response.setCharacterEncoding("UTF-8");   
     response.getWriter().println(translatedText);
   }
 

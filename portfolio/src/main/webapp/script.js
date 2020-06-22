@@ -39,11 +39,12 @@ function hello(){
 
     function requestTranslation() {
         const text = document.getElementById('comment').value;
+        console.log(text);
         const languageCode = document.getElementById('language').value;
-
+        console.log(languageCode);
         const resultContainer = document.getElementById('result');
         resultContainer.innerText = 'Loading...';
-        console.log(resultContainer);
+        console.log(resultContainer.innerText);
         const params = new URLSearchParams();
         params.append('text', text);
         params.append('languageCode', languageCode);
@@ -54,6 +55,7 @@ function hello(){
         }).then(response => response.text())
         .then((translatedMessage) => {
           resultContainer.innerText = translatedMessage;
+          console.log(translatedMessage);
         });
       }
 
