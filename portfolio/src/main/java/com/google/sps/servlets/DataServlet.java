@@ -47,7 +47,7 @@ public class DataServlet extends HttpServlet {
     Gson gson = new Gson();
     String json = gson.toJson(comments);
     response.getWriter().println(json);
-  
+    
 }
  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -56,7 +56,8 @@ public class DataServlet extends HttpServlet {
     String comment = getParameter(request, "comment", "");
    // System.out.println(comment);
    for(String x : comments){
-       System.out.println(x);
+       System.out.println("comment box in dataservlet "+x);
+       System.out.println("new line");
    }
     // Respond with the result.
     response.setContentType("text/html;");
@@ -68,8 +69,10 @@ public class DataServlet extends HttpServlet {
     //using the data store to make comments persist
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(comEntity);
-    //response.sendRedirect("index.html");
+    response.sendRedirect("index.html");
     response.getWriter().println(comments);
+    
+    
   }
 
   /**

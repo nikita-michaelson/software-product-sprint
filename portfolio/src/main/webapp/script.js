@@ -30,9 +30,9 @@ function addRandomQuoteOrFact() {
 function hello(){
    fetch('/data').then(response=>response.json()).then((comment)=>{
     const commentList = document.getElementById('response');
-    console.log(comment);
     comment.forEach((com) => {commentList.appendChild(createListElement(com));
     });
+    console.log(comment);
     
 });
 }

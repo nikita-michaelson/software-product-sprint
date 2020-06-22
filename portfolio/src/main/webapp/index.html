@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload = "hello()"">
 
       
       
@@ -74,7 +74,7 @@
             <div id = "nameHolder">
               <input type="text" id="userName" name="userName" maxlength="35" placeholder="Your name...">
             </div>
-          <label for="comment" style="display:block; margin-top: .5em;">Comment:</label>
+         <label for="comment" style="display:block; margin-top: .5em;">Comment:</label>
             <div id="textareaHolder">
             <textarea id="comment" name="comment" rows="4" cols="50" maxlength="600" placeholder="Add a comment..."></textarea>
             </div>
@@ -83,9 +83,9 @@
            <br></br>
         </form>
 
-           <h3>Use the translate button instead of post to see your comment in a different language!</h3>
-          <form action="/translate" method="POST">
-          
+           <h3>Use the translate button to see your comment in a different language!</h3>
+         
+           
           <select id="language">
             <option value="es">English</option>
             <option value="ko">Korean</option>
@@ -95,7 +95,7 @@
           <button onclick="requestTranslation()">Translate</button>
           <br></br>
           <div id = "result"></div>
-          </form>
+         
       </div>
       
 

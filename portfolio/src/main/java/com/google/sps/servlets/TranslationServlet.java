@@ -39,17 +39,17 @@ public class TranslationServlet extends HttpServlet {
  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the request parameters.
-    String originalText = request.getParameter("text");
-    String languageCode = request.getParameter("languageCode");
-    System.out.println(originalText);
-    System.out.println(languageCode);
+   String originalText = getParameter(request, "text", "");
+    String languageCode = getParameter(request, "languageCode", "");
+    System.out.println("originalText "+originalText);
+    System.out.println("languageCode "+languageCode);
 
     // Do the translation.
     Translate translate = TranslateOptions.getDefaultInstance().getService();
     Translation translation =
     translate.translate(originalText, Translate.TranslateOption.targetLanguage(languageCode));
     String translatedText = translation.getTranslatedText();
-    System.out.println(translatedText);
+    System.out.println("translatedText " +translatedText);
     
     // Output the translation.
     response.setContentType("text/html; charset=UTF-8");
