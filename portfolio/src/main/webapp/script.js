@@ -28,11 +28,34 @@ function addRandomQuoteOrFact() {
 }
 
 function hello(){
-   fetch('/data').then(response=>response.json()).then((hi)=>{
-    document.getElementById('response').innerText = hi;
-  });
+   fetch('/data').then(response=>response.json()).then((comment)=>{
+    const commentList = document.getElementById('response');
+    comment.forEach((com) => {commentList.appendChild(createListElement(com));
+    });
+    
+});
 }
 
+function requestTranslation() {
+     const text = document.getElementById('comment').value;
+     const languageCode = document.getElementById('language').value;
+     const resultContainer = document.getElementById('result');
+    resultContainer.innerText = 'Loading...';
+    const params = new URLSearchParams();
+    params.append('text', text);
+    params.append('languageCode', languageCode);
+
+    fetch('/translate', {
+        method: 'POST',
+        body: params
+    }).then(response => response.text())
+    .then((translatedMessage) => {
+        resultContainer.innerText = translatedMessage;
+    });
+}
+
+        
+    
 
 /** Creates an <li> element containing text. */
 function createListElement(text) {

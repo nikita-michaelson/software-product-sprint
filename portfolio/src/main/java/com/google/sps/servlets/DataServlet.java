@@ -13,8 +13,14 @@
 // limitations under the License.
 
 package com.google.sps.servlets;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -22,26 +28,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    private ArrayList<String> comments;
+    private ArrayList<String> comments = new ArrayList<>();
 
-  @Override
-  public void init() {
-    comments = new ArrayList<>();
-    comments.add("You're so smart");
-    comments.add("Keep up the good work");
-    comments.add(" Nice job! ");
-  }
-    
-    
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
+    // convert to json
     Gson gson = new Gson();
     String json = gson.toJson(comments);
-    response.getWriter().println(json);
-  
+    response.getWriter().println(json); 
 }
+ @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String name = getParameter(request, "userName", "");
+    String comment = getParameter(request, "comment", "");
+  
+    // Respond with the result.
+    response.setContentType("text/html;");
+    comments.add(comment+"            --"+name);
+    response.sendRedirect("index.html");
+    response.getWriter().println(comments);
+  }
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
 }
