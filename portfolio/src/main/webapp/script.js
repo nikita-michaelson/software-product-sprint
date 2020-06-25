@@ -32,32 +32,27 @@ function hello(){
     const commentList = document.getElementById('response');
     comment.forEach((com) => {commentList.appendChild(createListElement(com));
     });
-    console.log(comment);
     
 });
 }
 
-    function requestTranslation() {
-        const text = document.getElementById('comment').value;
-        console.log(text);
-        const languageCode = document.getElementById('language').value;
-        console.log(languageCode);
-        const resultContainer = document.getElementById('result');
-        resultContainer.innerText = 'Loading...';
-        console.log(resultContainer.innerText);
-        const params = new URLSearchParams();
-        params.append('text', text);
-        params.append('languageCode', languageCode);
+function requestTranslation() {
+     const text = document.getElementById('comment').value;
+     const languageCode = document.getElementById('language').value;
+     const resultContainer = document.getElementById('result');
+    resultContainer.innerText = 'Loading...';
+    const params = new URLSearchParams();
+    params.append('text', text);
+    params.append('languageCode', languageCode);
 
-        fetch('/translate', {
-          method: 'POST',
-          body: params
-        }).then(response => response.text())
-        .then((translatedMessage) => {
-          resultContainer.innerText = translatedMessage;
-          console.log(translatedMessage);
-        });
-      }
+    fetch('/translate', {
+        method: 'POST',
+        body: params
+    }).then(response => response.text())
+    .then((translatedMessage) => {
+        resultContainer.innerText = translatedMessage;
+    });
+}
 
         
     

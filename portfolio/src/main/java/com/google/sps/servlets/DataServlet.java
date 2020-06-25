@@ -32,47 +32,28 @@ import java.util.ArrayList;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    private ArrayList<String> comments;
-    public void init(){
-        comments = new ArrayList<>();
-        
-    }
+    private ArrayList<String> comments = new ArrayList<>();
+
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
-  
-
     // convert to json
     Gson gson = new Gson();
     String json = gson.toJson(comments);
-    response.getWriter().println(json);
-    
+    response.getWriter().println(json); 
 }
  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String name = getParameter(request, "userName", "");
     String comment = getParameter(request, "comment", "");
-   // System.out.println(comment);
-   for(String x : comments){
-       System.out.println("comment box in dataservlet "+x);
-       System.out.println("new line");
-   }
+  
     // Respond with the result.
     response.setContentType("text/html;");
     comments.add(comment+"            --"+name);
-      Entity comEntity = new Entity("Task");
-    comEntity.setProperty("name", name);
-    comEntity.setProperty("comment", comment);
-
-    //using the data store to make comments persist
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(comEntity);
     response.sendRedirect("index.html");
     response.getWriter().println(comments);
-    
-    
   }
 
   /**
